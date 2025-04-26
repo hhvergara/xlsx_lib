@@ -162,7 +162,7 @@ def recomprimir_a_xlsx(carpeta_origen, ruta_salida_xlsx):
 if __name__ == '__main__':
     file_1 = os.path.join(__BASE_DIR__,'examples', 'Example A.xlsx')
     file_2 = os.path.join(__BASE_DIR__,'examples', 'Example C.xlsx')
-    output_filename = "Output.xlsx"
+    output_filename = "Output 2.xlsx"
     output_folder_file = os.path.join(__BASE_DIR__,'output', output_filename)
 
     merge_xlsx_files(file_1, file_2, output_folder_file)
