@@ -96,7 +96,16 @@ def write_xlsx(output_path, xml_data, relations, sheet_names, creator=''):
         z.writestr('xl/_rels/.rels', relationships_xml)
         z.writestr('docProps/app.xml', update_app_xml(sheet_names))
         z.writestr('docProps/core.xml', update_core_xml(creator=creator))
+        from io import BytesIO
+        import zipfile
 
+        zip_buffer = BytesIO()
+        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for file_name, file_content in self.files.items():
+                zipf.writestr(file_name, file_content)
+        zip_buffer.seek(0)
+        return zip_buffer.getvalue()
+    
 def generate_relationships_xml(relations):
     root = ET.Element('Relationships', xmlns="http://schemas.openxmlformats.org/package/2006/relationships")
     for rid, target in relations.items():

@@ -13,12 +13,18 @@ class ZipHandler:
                     self.files[zip_info.filename] = file.read()
 
     def create_zip_bytes(self):
-        output = io.BytesIO()
-        with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED) as zipf:
-            for path, data in self.files.items():
-                zipf.writestr(path, data)
-        output.seek(0)
-        return output.read()
+        """
+        Crea un archivo ZIP en memoria a partir de los archivos almacenados.
+        """
+        from io import BytesIO
+        import zipfile
+
+        zip_buffer = BytesIO()
+        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            for file_name, file_content in self.files.items():
+                zipf.writestr(file_name, file_content)
+        zip_buffer.seek(0)
+        return zip_buffer.getvalue()
 
     def get_file_content(self, path):
         return self.files.get(path)

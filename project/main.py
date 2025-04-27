@@ -1,7 +1,8 @@
 # main.py
 from pathlib import Path
 import zipfile
-from core.xlsx_merger import XLSXMerger
+# from core.xlsx_merger import XLSXMerger
+from core.merger import XLSXMerger
 
 file_A= 'project/examples/Example A.xlsx'
 file_B= 'project/examples/Example B.xlsx'
@@ -16,7 +17,7 @@ def descomprimir_xlsx(ruta_xlsx, carpeta_destino):
 
 def main():
     # Cargar los archivos de entrada
-    with open(file_A, "rb") as f:
+    with open(file_C, "rb") as f:
         file_a_bytes = f.read()
 
     with open(file_C, "rb") as f:

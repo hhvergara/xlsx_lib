@@ -10,8 +10,11 @@ def write_xml_to_bytes(tree):
     tree.write(output, encoding="utf-8", xml_declaration=True)
     return output.getvalue()
 
-def generate_unique_id(existing_ids, prefix="rId"):
-    i = 1
-    while f"{prefix}{i}" in existing_ids:
-        i += 1
-    return f"{prefix}{i}"
+def generate_unique_id(existing_ids, prefix='rId'):
+    """
+    Genera un identificador único que no esté en existing_ids.
+    """
+    counter = 1
+    while f"{prefix}{counter}" in existing_ids:
+        counter += 1
+    return f"{prefix}{counter}"
